@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Dia das Mães!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(#ffe4ec, #fff0f5);
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background-color: #ff9eb3;
+      padding: 40px 20px;
+      color: white;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .content-section {
+      padding: 40px 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .message {
+      font-size: 1.2em;
+      background: #fff6f8;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    /* Carousel de frases */
+    .carousel {
+      position: relative;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .carousel-item {
+      display: none;
+      font-size: 1.1em;
+      background: #ffeef3;
+      border-left: 5px solid #ff9eb3;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    .carousel-item.active {
+      display: block;
+    }
+    .surprise-button {
+      margin-top: 30px;
+      background-color: #ff9eb3;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .surprise-button:hover {
+      background-color: #ff7f9f;
+    }
+    footer {
+      background-color: #ff9eb3;
+      color: white;
+      padding: 20px;
+    }
+  </style>
+  <!-- Biblioteca de confetes -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <header>
+    <h1>Para a melhor mãe do mundo ❤️</h1>
+    <p>Uma surpresa feita com amor no Dia das Mães!</p>
+  </header>
+
+  <section class="content-section">
+    <h2>📸 Nossas Memórias</h2>
+    <div class="gallery">
+      <img src="foto1.jpg.jpg" alt="Foto 1">
+      <img src="foto2.jpg" alt="Foto 2">
+      <img src="foto.jpg" alt="Foto 3">
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>💌 Mensagens do Coração</h2>
+    <div class="message">
+      Mãe, obrigado por tudo! Você é meu porto seguro, minha inspiração, e o maior amor da minha vida. Feliz Dia das Mães! 💖
+    </div>
+    <div class="carousel">
+      <div class="carousel-item active">🌷 Você me ensinou a ser forte, gentil e a nunca desistir. Cada gesto seu é um exemplo de amor verdadeiro.</div>
+      <div class="carousel-item">💗 Mesmo nos dias difíceis, seu sorriso sempre iluminou o caminho. Obrigado por ser meu sol!</div>
+      <div class="carousel-item">🫶 Se eu pudesse escolher de novo, escolheria você mil vezes como minha mãe.</div>
+      <div class="carousel-item">🌟 Sua sabedoria guia meus passos; sou eternamente grato por cada conselho seu.</div>
+      <div class="carousel-item">💕 Você faz do mundo um lugar melhor só por existir. Feliz Dia das Mães!</div>
+      <div class="carousel-item">🌸 Sua dedicação e carinho me ensinaram o valor da família e do amor incondicional.</div>
+      <div class="carousel-item">✨ Que seu dia seja tão especial quanto você é para mim. Te amo, mãe!</div>
+    </div>
+
+    <button class="surprise-button" id="surpriseBtn">
+      Clique aqui para uma surpresa 💝
+    </button>
+  </section>
+
+  <footer>
+    Deu trabalho mas valeu a pena 💕
+  </footer>
+
+  <script>
+    // Carrossel de frases (6 segundos)
+    const items = document.querySelectorAll('.carousel-item');
+    let current = 0;
+    setInterval(() => {
+      items[current].classList.remove('active');
+      current = (current + 1) % items.length;
+      items[current].classList.add('active');
+    }, 6000);
+
+    // Confetes ao clicar no botão, duração de 2 segundos
+    const btn = document.getElementById('surpriseBtn');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const duration = 2000;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({ particleCount: 5, spread: 60 });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+      // Navega após a animação
+      setTimeout(() => {
+        window.location.href = 'surpresa.html';
+      }, duration);
+    });
+  </script>
+</body>
+</html>
